@@ -1,0 +1,17 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: $DATABASE_PASSWORD
+  rails:
+    build: .
+    environment:
+      DATABASE_USERNAME: $DATABASE_USERNAME
+      DATABASE_PASSWORD: $DATABASE_PASSWORD
+      DATABASE_HOST: mysql
+      DATABASE_PORT: 3306
+    ports:
+      - 3000:3000
+    depends_on:
+      - mysql
